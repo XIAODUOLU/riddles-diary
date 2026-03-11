@@ -10,6 +10,7 @@ import '../styles/diary.css';
 
 export default function TomRiddleDiary() {
   const [isSummoned, setIsSummoned] = useState(false); // 日记本是否已被召唤
+  const [isAnimating, setIsAnimating] = useState(false); // 是否正在播放召唤动画
   const [page, setPage] = useState(0); // 0 = 闭合, 1 = 翻开
   const [inputValue, setInputValue] = useState("");
   const [isLocked, setIsLocked] = useState(false);
@@ -21,6 +22,10 @@ export default function TomRiddleDiary() {
   // 处理召唤咒语
   const handleAccio = () => {
     setIsSummoned(true);
+    setIsAnimating(true);
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 1500); // 和 accioFly 动画一致
   };
 
   // 初始交互：汤姆的问候
@@ -37,7 +42,13 @@ export default function TomRiddleDiary() {
     }
   }, [page, triggerTomTyping]);
 
-  const handleOpen = () => setPage(1);
+  const handleOpen = () => {
+    // 只有在召唤完成且动画结束后才允许打开
+    if (isSummoned && !isAnimating) {
+      setPage(1);
+    }
+  };
+  
   const handleClose = () => setPage(0);
 
   const handleSubmit = (text: string) => {
@@ -65,7 +76,7 @@ export default function TomRiddleDiary() {
       
       <CloseButton isVisible={page === 1} onClick={handleClose} />
 
-      <div className={`book ${isSummoned ? 'summoned' : 'hidden'} ${page === 1 ? 'open' : ''}`}>
+      <div className={`book ${!isSummoned ? 'hidden' : ''} ${isAnimating ? 'summoned' : ''} ${page === 1 ? 'open' : ''}`}>
         <div className="book-shadow" />
 
         {/* 右侧堆叠（未翻动的书页和封底） */}
