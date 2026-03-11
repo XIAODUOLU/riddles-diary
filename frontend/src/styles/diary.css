@@ -78,26 +78,61 @@
   border-radius: 14px 4px 4px 14px; 
 }
 
+/* 优化：更真实的笔记本中缝效果 */
 .spine-joint-right {
-  position: absolute; 
-  left: 0; 
-  top: 0; 
-  width: 25px; 
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
   height: 100%;
-  background: linear-gradient(to right, rgba(0,0,0,0.35), transparent);
-  pointer-events: none; 
+  background:
+    linear-gradient(to right,
+      rgba(0,0,0,0.5) 0%,
+      rgba(0,0,0,0.3) 30%,
+      rgba(0,0,0,0.15) 60%,
+      transparent 100%
+    );
+  pointer-events: none;
   z-index: 5;
 }
 
-.spine-joint-left {
-  position: absolute; 
-  right: 0; 
-  top: 0; 
-  width: 25px; 
+.spine-joint-right::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
   height: 100%;
-  background: linear-gradient(to left, rgba(0,0,0,0.35), transparent);
-  pointer-events: none; 
+  background: rgba(0,0,0,0.4);
+  box-shadow: 1px 0 3px rgba(0,0,0,0.3);
+}
+
+.spine-joint-left {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30px;
+  height: 100%;
+  background:
+    linear-gradient(to left,
+      rgba(0,0,0,0.5) 0%,
+      rgba(0,0,0,0.3) 30%,
+      rgba(0,0,0,0.15) 60%,
+      transparent 100%
+    );
+  pointer-events: none;
   z-index: 5;
+}
+
+.spine-joint-left::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  box-shadow: -1px 0 3px rgba(0,0,0,0.3);
 }
 
 .tex-leather {
@@ -125,10 +160,30 @@
   background: linear-gradient(to right, transparent, rgba(0,0,0,0.15));
 }
 
-.font-handwriting { 
-  font-family: 'Caveat', cursive; 
+.font-handwriting {
+  font-family: 'Caveat', cursive;
   font-size: 1.8rem;
   line-height: 1.4;
+}
+
+/* 中文魔法字体 - 使用草书风格，致美丽体最有魔法感 */
+.font-chinese-handwriting {
+  font-family: 'Zhi Mang Xing', 'Liu Jian Mao Cao', 'Ma Shan Zheng', 'KaiTi', 'STKaiti', 'Caveat', cursive, serif;
+  font-size: 1.9rem;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+/* 装饰字体 - 印刷体 */
+.font-decorative {
+  font-family: 'Cinzel Decorative', serif;
+}
+
+/* 英文手写字体 - 魔法风格 */
+.font-handwriting {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
 }
 
 /* 魔法般的墨水渗入消失动画 */

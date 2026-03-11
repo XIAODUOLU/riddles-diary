@@ -99,11 +99,11 @@ export default function TomRiddleDiary() {
     <div className="diary-environment">
       
       {/* 关闭按钮 */}
-      <div 
+      <div
         className={`fixed top-6 right-6 z-50 transition-all duration-1000 ${page === 1 ? 'opacity-100 translate-y-0 cursor-pointer' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
         onClick={() => setPage(0)}
       >
-        <div className="text-[#8a733e] hover:text-[#e2d1b5] text-sm tracking-[0.3em] uppercase flex items-center gap-3">
+        <div className="font-chinese-handwriting text-[#8a733e] hover:text-[#e2d1b5] text-base flex items-center gap-3">
           <span>合上日记</span>
           <span className="text-xl">✕</span>
         </div>
@@ -136,19 +136,24 @@ export default function TomRiddleDiary() {
             <div className="spine-joint-right" />
             <div className={`magic-glow ${messages.some(m => m.sender === 'tom' && m.status !== 'gone') ? 'opacity-100' : 'opacity-0'}`} />
             
-            <div className="absolute inset-0 p-10 pt-16 overflow-hidden flex flex-col justify-start">
-              {messages.filter(m => m.status !== 'gone').map(m => (
-                <div 
-                  key={m.id} 
-                  className={`font-handwriting ink-text mb-5 w-full ${m.status === 'fading' ? 'ink-fading' : ''} ${m.sender === 'tom' ? 'text-center italic' : 'text-left pl-5 border-l border-black/5'}`}
-                >
-                  {m.sender === 'tom' ? m.displayedText : m.text}
-                </div>
-              ))}
+            {/* 优化：交互区域居中显示 */}
+            <div className="absolute inset-0 p-10 overflow-hidden flex flex-col justify-center items-center">
+              <div className="w-full max-w-[85%] flex flex-col items-center">
+                {messages.filter(m => m.status !== 'gone').map(m => (
+                  <div
+                    key={m.id}
+                    className={`font-chinese-handwriting ink-text mb-5 w-full ${m.status === 'fading' ? 'ink-fading' : ''} ${m.sender === 'tom' ? 'text-center italic' : 'text-left pl-5'}`}
+                  >
+                    {m.sender === 'tom' ? m.displayedText : m.text}
+                  </div>
+                ))}
 
-              <div className="font-handwriting ink-text text-left pl-5 border-l border-black/10 flex flex-wrap relative z-10 min-h-[2.5rem]">
-                {inputValue}
-                {!isLocked && <span className="animate-pulse ml-1 opacity-60">|</span>}
+                {/* 优化：固定输入区域，避免跳动，移除灰色边框 */}
+                <div className="font-chinese-handwriting ink-text text-left pl-5 w-full min-h-[2.5rem] relative">
+                  <span className="whitespace-pre-wrap break-words">{inputValue}</span>
+                  {!isLocked && inputValue === "" && <span className="animate-pulse opacity-60">|</span>}
+                  {!isLocked && inputValue !== "" && <span className="animate-pulse ml-1 opacity-60">|</span>}
+                </div>
               </div>
 
               <textarea
@@ -171,21 +176,9 @@ export default function TomRiddleDiary() {
 
         {/* --- 左侧堆叠（翻转后的书页和封面） --- */}
 
-        {/* 左侧厚度模拟页 - 翻开后在最下层 */}
-        {[...Array(3)].map((_, i) => (
-          <div key={`l-${i}`} className="leaf" 
-               style={{ 
-                 transform: `rotateY(${page === 1 ? -176 - i : 0}deg) translateZ(${(i + 7) * 1.5}px)`,
-                 zIndex: 10 + i 
-               }}>
-            <div className="face face-front tex-paper paper-edge" />
-            <div className="face face-back tex-paper">
-               <div className="spine-joint-left" />
-            </div>
-          </div>
-        ))}
+        {/* --- 左侧堆叠（翻转后的书页和封面） --- */}
 
-        {/* 封面层 (最顶层) */}
+        {/* 封面层 (最顶层) - 必须在最后渲染 */}
         <div className={`leaf`} 
              style={{ 
                transform: `rotateY(${page === 1 ? -180 : 0}deg) translateZ(15px)`,
@@ -198,8 +191,8 @@ export default function TomRiddleDiary() {
             <MetalCorner pos="br" />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="border border-[#111] p-6 w-[80%] h-[85%] flex items-center justify-center">
-                <h1 
-                  className="text-2xl tracking-[0.4em] uppercase opacity-40 text-black text-center"
+                <h1
+                  className="text-3xl opacity-40 text-black text-center font-handwriting"
                   style={{ textShadow: '-1px -1px 1px rgba(255,255,255,0.1), 1px 1px 3px rgba(0,0,0,0.9)' }}
                 >
                   T. M. Riddle
@@ -208,16 +201,34 @@ export default function TomRiddleDiary() {
             </div>
             {page === 0 && (
               <div className="absolute bottom-12 w-full flex justify-center opacity-0 group-hover:opacity-60 transition-opacity">
-                <span className="text-[#8a733e] text-xs tracking-[0.5em] uppercase">点击开启</span>
+                <span className="font-chinese-handwriting text-[#8a733e] text-sm">点击开启</span>
               </div>
             )}
           </div>
           
-          {/* 内封面 */}
+          {/* 内封面 - 添加装饰内容 */}
           <div className="face face-back tex-paper cursor-pointer" onClick={() => setPage(0)}>
              <div className="spine-joint-left" />
              <div className="absolute inset-0 bg-black/10" />
              <div className="absolute inset-10 border border-black/5" />
+             
+             {/* 魔法装饰内容 - 使用英文手写字体 */}
+             <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-black/30 pointer-events-none">
+               <div className="text-4xl mb-8 tracking-widest">☽ ✦ ☾</div>
+               <div className="font-handwriting text-3xl mb-6 opacity-60 italic">
+                 Memories Preserved
+               </div>
+               <div className="text-2xl mb-8">⚡ ✧</div>
+               <div className="font-handwriting text-lg opacity-40 mb-3">
+                 Diary Owner
+               </div>
+               <div className="font-handwriting text-2xl opacity-50 mb-8">
+                 Tom Marvolo Riddle
+               </div>
+               <div className="font-handwriting text-base opacity-30">
+                 Est. 1943
+               </div>
+             </div>
           </div>
 
         </div>

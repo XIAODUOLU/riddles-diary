@@ -1,3 +1,28 @@
+/* 中文字体 - 本地文件 */
+@font-face {
+  font-family: 'Zhi Mang Xing';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/zhi-mang-xing-full.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ma Shan Zheng';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ma-shan-zheng-full.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Liu Jian Mao Cao';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/liu-jian-mao-cao-full.ttf') format('truetype');
+}
+
 /* Caveat Font - Regular (500) */
 @font-face {
   font-family: 'Caveat';
