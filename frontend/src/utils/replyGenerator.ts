@@ -1,9 +1,10 @@
 import { TOM_REPLIES } from '../constants/diary';
+import { generateAIReply } from '../services/aiService';
 
 /**
- * 根据用户输入生成汤姆的回复
+ * 根据用户输入生成汤姆的回复（使用本地规则作为fallback）
  */
-export function generateReplyText(userText: string): string {
+function generateFallbackReply(userText: string): string {
   const lower = userText.toLowerCase();
   
   if (lower.includes("hello") || lower.includes("hi") || lower.includes("你好")) {
@@ -43,4 +44,20 @@ export function generateReplyText(userText: string): string {
   }
   
   return TOM_REPLIES.DEFAULT;
+}
+
+/**
+ * 生成汤姆的回复文本
+ * 优先使用AI API，失败时使用本地规则
+ */
+export async function generateReplyText(userText: string): Promise<string> {
+  try {
+    // 尝试使用AI API生成回复
+    const aiReply = await generateAIReply(userText);
+    return aiReply;
+  } catch (error) {
+    console.warn('AI generation failed, using fallback:', error);
+    // 如果AI调用失败，使用本地规则
+    return generateFallbackReply(userText);
+  }
 }

@@ -48,14 +48,14 @@
 }
 
 @media (min-width: 768px) {
-  .book.open { 
-    transform: rotateX(10deg) rotateY(0deg) translateZ(0px) translateX(50%); 
+  .book.open {
+    transform: rotateX(10deg) rotateY(0deg) translateZ(0px) translateX(50%);
   }
 }
 
 @media (max-width: 767px) {
-  .book.open { 
-    transform: rotateX(5deg) rotateY(0deg) translateZ(0px) translateX(0%); 
+  .book.open {
+    transform: rotateX(5deg) rotateY(0deg) translateZ(0px) translateX(0%);
   }
 }
 
