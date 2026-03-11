@@ -43,19 +43,19 @@ export default function BookCover({ isOpen, onOpen, onClose }: BookCoverProps) {
         <div className="absolute inset-10 border border-black/5" />
         
         {/* 魔法装饰内容 */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-black/30 pointer-events-none">
-          <div className="text-4xl mb-8 tracking-widest">☽ ✦ ☾</div>
-          <div className="font-handwriting text-3xl mb-6 opacity-60 italic">
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-12 pointer-events-none">
+          <div className="ink-text text-4xl mb-8 tracking-widest opacity-40">☽ ✦ ☾</div>
+          <div className="font-handwriting ink-text text-3xl mb-6 opacity-60 italic">
             Memories Preserved
           </div>
-          <div className="text-2xl mb-8">⚡ ✧</div>
-          <div className="font-handwriting text-lg opacity-40 mb-3">
+          <div className="ink-text text-2xl mb-8 opacity-40">⚡ ✧</div>
+          <div className="font-handwriting ink-text text-lg opacity-50 mb-3">
             Diary Owner
           </div>
-          <div className="font-handwriting text-2xl opacity-50 mb-8">
+          <div className="font-handwriting ink-text text-2xl opacity-60 mb-8">
             Tom Marvolo Riddle
           </div>
-          <div className="font-handwriting text-base opacity-30">
+          <div className="font-handwriting ink-text text-base opacity-40">
             Est. 1943
           </div>
         </div>

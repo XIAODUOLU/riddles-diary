@@ -1,5 +1,5 @@
 .diary-environment {
-  background: radial-gradient(circle at 50% 50%, #1e2022 0%, #050505 80%);
+  background: radial-gradient(circle at 50% 50%, #1a1525 0%, #0a0612 80%);
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -209,8 +209,8 @@
 }
 
 .ink-text {
-  color: #1a1c20;
-  text-shadow: 0px 0px 0.5px rgba(0,0,0,0.3);
+  color: #4a4c50;
+  text-shadow: 0px 0px 0.5px rgba(0,0,0,0.2);
   animation: inkAppear 1.2s ease-out forwards;
 }
 
