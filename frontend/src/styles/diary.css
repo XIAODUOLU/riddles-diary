@@ -1,5 +1,5 @@
 .diary-environment {
-  background: radial-gradient(circle at 50% 50%, #1a1525 0%, #0a0612 80%);
+  background: url('/background.png') center/cover no-repeat;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
