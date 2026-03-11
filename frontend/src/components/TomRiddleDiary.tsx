@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import AccioButton from './AccioButton';
 import CloseButton from './CloseButton';
 import BookCover from './BookCover';
 import InteractivePage from './InteractivePage';
@@ -8,6 +9,7 @@ import { ANIMATION_TIMING, BOOK_DIMENSIONS, INITIAL_GREETING } from '../constant
 import '../styles/diary.css';
 
 export default function TomRiddleDiary() {
+  const [isSummoned, setIsSummoned] = useState(false); // 日记本是否已被召唤
   const [page, setPage] = useState(0); // 0 = 闭合, 1 = 翻开
   const [inputValue, setInputValue] = useState("");
   const [isLocked, setIsLocked] = useState(false);
@@ -15,6 +17,11 @@ export default function TomRiddleDiary() {
   const hasOpened = useRef(false);
 
   const { messages, triggerTomTyping, handleUserSubmit } = useMessageManager();
+
+  // 处理召唤咒语
+  const handleAccio = () => {
+    setIsSummoned(true);
+  };
 
   // 初始交互：汤姆的问候
   useEffect(() => {
@@ -53,9 +60,12 @@ export default function TomRiddleDiary() {
 
   return (
     <div className="diary-environment">
+      {/* 召唤按钮 */}
+      {!isSummoned && <AccioButton onClick={handleAccio} />}
+      
       <CloseButton isVisible={page === 1} onClick={handleClose} />
 
-      <div className={`book ${page === 1 ? 'open' : ''}`}>
+      <div className={`book ${isSummoned ? 'summoned' : 'hidden'} ${page === 1 ? 'open' : ''}`}>
         <div className="book-shadow" />
 
         {/* 右侧堆叠（未翻动的书页和封底） */}

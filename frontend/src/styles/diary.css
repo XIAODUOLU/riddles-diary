@@ -21,6 +21,32 @@
   transform: rotateX(25deg) rotateY(-15deg) translateZ(-50px);
 }
 
+/* 隐藏状态 - 日记本在远处 */
+.book.hidden {
+  opacity: 0;
+  transform: translateX(-150vw) translateY(-50vh) rotateX(45deg) rotateY(-60deg) translateZ(-500px) scale(0.3);
+  transition: none;
+}
+
+/* 召唤动画 - 日记本飞过来 */
+.book.summoned {
+  animation: accioFly 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes accioFly {
+  0% {
+    opacity: 0;
+    transform: translateX(-150vw) translateY(-50vh) rotateX(45deg) rotateY(-60deg) translateZ(-500px) scale(0.3);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(25deg) rotateY(-15deg) translateZ(-50px) scale(1);
+  }
+}
+
 @media (min-width: 768px) {
   .book.open { 
     transform: rotateX(10deg) rotateY(0deg) translateZ(0px) translateX(50%); 
