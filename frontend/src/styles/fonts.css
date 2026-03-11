@@ -1,0 +1,26 @@
+/* Caveat Font - Regular (500) */
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/caveat.woff2') format('woff2');
+}
+
+/* Caveat Font - Bold (700) */
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/caveat-700.woff2') format('woff2');
+}
+
+/* Cinzel Decorative Font - Bold (700) */
+@font-face {
+  font-family: 'Cinzel Decorative';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/cinzel-decorative.woff2') format('woff2');
+}
