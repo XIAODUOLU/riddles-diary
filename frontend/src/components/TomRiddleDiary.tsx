@@ -4,6 +4,7 @@ import CloseButton from './CloseButton';
 import BookCover from './BookCover';
 import InteractivePage from './InteractivePage';
 import { BackCover, ThicknessPages } from './BookPages';
+import DarkParticles from './DarkParticles';
 import { useMessageManager } from '../hooks/useMessageManager';
 import { ANIMATION_TIMING, BOOK_DIMENSIONS, INITIAL_GREETING } from '../constants/diary';
 import '../styles/diary.css';
@@ -25,7 +26,7 @@ export default function TomRiddleDiary() {
     setIsAnimating(true);
     setTimeout(() => {
       setIsAnimating(false);
-    }, 1500); // 和 accioFly 动画一致
+    }, 2500); // 比 accioFly 动画稍长
   };
 
   // 初始交互：汤姆的问候
@@ -75,6 +76,9 @@ export default function TomRiddleDiary() {
       {!isSummoned && <AccioButton onClick={handleAccio} />}
       
       <CloseButton isVisible={page === 1} onClick={handleClose} />
+
+      {/* 黑暗粒子动画 - 独立容器 */}
+      <DarkParticles isAnimating={isAnimating} />
 
       <div className={`book ${!isSummoned ? 'hidden' : ''} ${isAnimating ? 'summoned' : ''} ${page === 1 ? 'open' : ''}`}>
         <div className="book-shadow" />
