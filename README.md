@@ -1,5 +1,11 @@
 # 🖋️ Riddle's Diary
 
+<p align="center">
+  <img src="assets/demo1.png" width="30%" />
+  <img src="assets/demo2.png" width="30%" />
+  <img src="assets/demo3.png" width="30%" />
+</p>
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-GGUF-yellow)](https://huggingface.co/XIAODUOLU/riddles-diary-normal-0.8B-GGUF)
